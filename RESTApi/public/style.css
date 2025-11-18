@@ -1,0 +1,175 @@
+/* ---------------- GENERAL ---------------- */
+body {
+  font-family: "Poppins", sans-serif;
+  background: #9ec4eb;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Page Title */
+h1 {
+  text-align: center;
+  margin-top: 30px;
+  color: #2c3e50;
+  letter-spacing: 2px;
+}
+
+/* ---------------- POST CONTAINER (show.ejs & index.ejs) ---------------- */
+.post-container {
+  background: #fff;
+  width: 60%;
+  margin: 30px auto;
+  padding: 25px 30px;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+/* Post Content */
+h2 {
+  color: #1a5276;
+  margin-bottom: 10px;
+}
+
+h3 {
+  color: #0077b6;
+  margin-top: 15px;
+  font-weight: normal;
+  line-height: 1.6;
+}
+
+/* Back Button */
+.back-btn {
+  display: block;
+  text-align: center;
+  width: fit-content;
+  margin: 25px auto 0;
+  background-color: #0077b6;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.back-btn:hover {
+  background-color: #005f86;
+}
+
+/* ---------------- CREATE POST PAGE (new.ejs) ---------------- */
+form {
+  background: #fff;
+  width: 60%;
+  margin: 40px auto;
+  padding: 30px 35px;
+  border-radius: 15px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form input[type="text"],
+form textarea {
+  width: 90%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  resize: none;
+  transition: border-color 0.2s ease;
+}
+
+form input[type="text"]:focus,
+form textarea:focus {
+  border-color: #0077b6;
+  outline: none;
+}
+
+form textarea {
+  height: 120px;
+}
+
+form button {
+  background-color: #0077b6;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+form button:hover {
+  background-color: #005f86;
+}
+
+/* Form Title */
+h1.create-title {
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 40px;
+  letter-spacing: 1px;
+}
+
+/* ---------------- INDEX POSTS PAGE (index.ejs) ---------------- */
+.posts-list {
+  width: 80%;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.post-item {
+  background: #fff;
+  padding: 20px 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.post-item h2 {
+  color: #1a5276;
+  margin-bottom: 5px;
+}
+
+.post-item h3 {
+  color: #0077b6;
+  font-weight: normal;
+  margin-top: 10px;
+}
+
+.post-link {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.2s ease;
+}
+
+.post-link:hover h2 {
+  color: #0077b6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .post-container,
+  form,
+  .posts-list {
+    width: 90%;
+    padding: 20px;
+  }
+}

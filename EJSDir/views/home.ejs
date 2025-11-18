@@ -1,0 +1,20 @@
+<%- include("includes/head.ejs") %>
+<body>
+    <h1>HOME</h1>
+    <!-- <h2><%= 3+1 %></h2> -->
+     <h3><%= "Subheading".toUpperCase() %></h3>
+   
+    <p style="font-size: 1.5rem;">
+EJS, or Embedded JavaScript, is a templating engine used with Node.js to generate dynamic HTML pages. It allows developers to write HTML markup and embed JavaScript code directly within the page using simple tags like &lt;%= %&gt; or &lt;% %&gt;. This makes it easy to pass data from the server to the frontend and render content dynamically without having to rely on heavy client-side frameworks. When a user requests a page, the server processes the EJS template, injects the data, and sends the final HTML to the browser. This technique makes web development more efficient and organized, especially for small to medium-sized projects where full-scale frontend frameworks may not be necessary.
+
+Learning EJS helps developers understand the fundamental concept of server-side rendering, which is still an essential part of web development today. Unlike client-side rendering, where JavaScript runs in the browser to update the DOM, server-side rendering happens before the page reaches the browser. This results in faster initial loading and better SEO performance. EJS plays a major role in enabling this by allowing developers to control how data is displayed and structured within HTML. It’s also extremely lightweight and integrates easily with Express.js, one of the most popular Node.js frameworks.
+
+When using EJS, developers typically organize their project by creating a “views” folder, which holds all EJS files. Each file represents a web page or a reusable component such as a header or footer. Using partials helps maintain a clean and modular structure. For example, instead of rewriting the same navigation bar on every page, you can create a single header.ejs file and include it wherever needed using the &lt;%- include('header') %&gt; syntax. This improves maintainability and saves a lot of time when updating layouts or making design changes.
+
+In practical use, EJS templates can also handle conditions and loops directly within the HTML. Developers can use JavaScript logic to display elements dynamically based on the data received from the server. For instance, if you are building a blog, EJS can loop through an array of posts and display each one with its title, author, and content. It can also conditionally render messages like “No posts available” if the array is empty. This flexibility gives developers a simple but powerful way to control page content using pure JavaScript logic.
+
+EJS doesn’t replace modern frontend frameworks like React or Vue, but it provides an easy way to generate server-rendered pages without a complex setup. Many developers still prefer it for smaller apps, admin dashboards, or projects where SEO and speed are more important than dynamic interactivity. Understanding EJS also helps beginners strengthen their grasp of how web templates and data rendering work behind the scenes. It bridges the gap between backend and frontend development and encourages writing cleaner, reusable code. Overall, learning EJS is a great step toward becoming a full-stack developer who understands how data flows from server to browser efficiently.
+</p>
+
+</body>
+</html>

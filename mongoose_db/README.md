@@ -1,0 +1,1 @@
+A simple backend project connected to an SQL database with CRUD APIs, environment configuration, and modular structure for easy scalability.

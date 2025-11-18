@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InstaGrom</title>
+  </head>
+  <body>
+    <h1>This account belongs to <%= username %></h1>
+    <button>Follow</button>
+    <button>Messages</button>
+
+    <ul>
+      <h2>Your followers:</h2>
+      <% for(let name of fol){ %>
+
+      <li><%= name %></li>
+
+      <% } %>
+    </ul>
+  </body>
+</html>

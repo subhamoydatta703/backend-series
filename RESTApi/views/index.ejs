@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>POSTS</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+   <h1>All Posts</h1>
+<div class="posts-list">
+  <% posts.forEach(post => { %>
+    <div class="post-item">
+      <h2><%= post.username %></h2>
+      <h3><%= post.content %></h3>
+      <!-- Separate link outside outer <a> -->
+      <a href="/posts/<%= post.id %>" class="see-detail">See in detail →</a>
+      <br>
+      <a href="/posts/<%= post.id %>/edit" class="see-detail">Edit</a>
+      <br>
+      <form action="/posts/<%= post.id %>?_method=DELETE" method="post">
+        <button>Delete</button>
+      </form>
+    </div>
+  <% }) %>
+</div>
+
+<a href="/posts/new" class="back-btn">+ Create New Post</a>
+
+  </body>
+</html>
