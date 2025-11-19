@@ -1,5 +1,18 @@
 const mongoose = require("mongoose");
+const mongoose = require("mongoose");
+const dotenv = require('dotenv')
+// perform db connection
 
+async function connectionDB() {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("DB connected");
+  } catch (error) {
+    console.log("DB not connected: ", error);
+  }
+}
+
+module.exports = connectionDB;
 main()
   .then(() => {
     console.log("Connected");
@@ -7,7 +20,7 @@ main()
   .catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/test");
+  await mongoose.connect(process.env.MONGO_URI);
 }
 
 const userSchema = new mongoose.Schema({
@@ -43,7 +56,7 @@ const User = mongoose.model("User", userSchema);
 
 // async function  createUser(your_name, your_email, your_age) {
 //     try {
-//         const  user = await User.create({
+//         const  user = await User.insertOne({
 //             name: your_name,
 //             email: your_email,
 //             age: your_age

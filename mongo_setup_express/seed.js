@@ -17,7 +17,7 @@ async function createChat(user1, user2, your_msg) {
     console.log(error);
   }
 }
-createChat("Subhamoy", "Rohit", "Hello, This is Subhamoy");
+createChat("Rohan", "Rohit", "Hello, Hello, I am Rohan");
 
 let users = [
   {
