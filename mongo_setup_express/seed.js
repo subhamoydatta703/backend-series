@@ -17,7 +17,7 @@ async function createChat(user1, user2, your_msg) {
     console.log(error);
   }
 }
-createChat("Rohan", "Rohit", "Hello, Hello, I am Rohan");
+createChat("Ronit", "Roshan", "Hello, Hello, I am Ronit");
 
 let users = [
   {
@@ -51,4 +51,4 @@ async function createManyChats(manyUsers) {
   }
 }
 
-createManyChats(users);
+// createManyChats(users);

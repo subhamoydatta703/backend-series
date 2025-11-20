@@ -11,9 +11,9 @@ router.get("/chat", async (req, res) => {
   console.log("Home route");
 
   try {
-    let data = await Chat.find();
-    res.send(data);
-    console.log(data);
+    let datas = await Chat.find();
+    res.render("show.ejs",{datas});
+    console.log(datas);
   } catch (error) {
     console.log(error);
   }
