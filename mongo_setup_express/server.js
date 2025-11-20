@@ -1,18 +1,21 @@
 const express = require("express");
 const app = express();
 const path = require("path");
-const connectionDB = require("./db/connection")
+const connectionDB = require("./db/connection");
+const chatRoutes = require("./routes/chatRoutes");
 
 // main server
 
 app.use(express.json());
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-
+app.use(chatRoutes)
 connectionDB();
 app.get("/", (req, res) => {
-  res.send("Route is working");
+  res.send("Main server working");
 });
+
+
 
 app.listen(8080, () => {
   console.log("listening at 8080");
