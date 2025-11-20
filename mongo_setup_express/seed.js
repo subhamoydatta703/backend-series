@@ -51,4 +51,5 @@ async function createManyChats(manyUsers) {
   }
 }
 
+module.exports = {createChat}
 // createManyChats(users);

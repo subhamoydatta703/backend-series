@@ -64,10 +64,15 @@ app.get("/user", (req, res) => {
     res.send("Some error occured in db");
   }
 });
+
+// this route loads the form that we are using to pass the new post's information
 app.get("/user/new",(req, res)=>{
   res.render("new.ejs")
 })
-// create a post
+// route to create that new post by using the aforementioned form which is loading by 
+// app.get("/user/new",(req, res)=>{
+//   res.render("new.ejs")
+// })
 app.post("/user",(req, res)=>{
   console.log(req.body);
   let {username, email, password}= req.body;
