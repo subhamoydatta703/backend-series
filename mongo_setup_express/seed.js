@@ -51,5 +51,24 @@ async function createManyChats(manyUsers) {
   }
 }
 
-module.exports = {createChat}
+async function delChat(chatID) {
+  
+  try {
+    let userDel = await Chat.findByIdAndDelete(chatID);
+    console.log("Deleted user", userDel);
+    
+    
+  } catch (error) {
+    console.log(error);
+    
+  }
+}
+
+
+
+module.exports = {
+  createChat,
+  delChat
+
+}
 // createManyChats(users);

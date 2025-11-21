@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Chat = require("../models/chat");
-const {createChat} = require("../seed")
+const {createChat, delChat} = require("../seed")
 
 // Router helps us create separate route files.
 // It works like a small Express app where we write routes.
@@ -33,6 +33,16 @@ let {from, to, msg}= req.body;
  createChat(from, to, msg);
 res.redirect("/chat")
 
+})
+
+router.delete("/chat/:_id",(req, res)=>{
+    let {_id} = req.params;
+    if(_id){
+        delChat(_id);
+    }
+    console.log(_id);
+    res.redirect("/chat")
+    
 })
 
 
