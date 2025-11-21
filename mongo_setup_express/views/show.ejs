@@ -56,15 +56,24 @@
         background: #574bdb;
         transform: scale(1.03);
       }
+.delete-btn {
+  background: #ff4d4d;
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  padding: 6px 12px;
+  font-size: 14px;
+}
 
-      .delete-btn {
-        background: #ff4d4d;
-        position: absolute;
-        right: 18px;
-        top: 18px;
-        padding: 6px 12px;
-        font-size: 14px;
-      }
+.edit-btn {
+  background: #4d79ff;
+  position: absolute;
+  right: 18px;
+  top: 60px;   /* move it below delete button */
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
 
       .delete-btn:hover {
         background: #cc0000;
@@ -84,12 +93,16 @@
         <form action="/chat/<%= data._id %>?_method=DELETE" method="POST">
           <button class="btn delete-btn">Delete</button>
         </form>
+        <form action="/chat/<%=data._id%>/edit" method="GET">
+          <button class="btn edit-btn">Edit</button>
+        </form>
 
         <p><strong>From:</strong> <%= data.from %></p>
         <p><strong>Message:</strong> <%= data.msg %></p>
         <p><strong>To:</strong> <%= data.to %></p>
       </div>
       <% } %>
+      
 
       <form action="/chat/new" method="GET">
         <button class="btn">Add New</button>

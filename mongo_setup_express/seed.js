@@ -7,7 +7,7 @@ connectionDB();
 
 async function createChat(user1, user2, your_msg) {
   try {
-    let chat1 = await Chat.create({
+    let chat1 = await Chat.insertOne({
       from: user1,
       to: user2,
       msg: your_msg,
@@ -44,7 +44,7 @@ let users = [
 
 async function createManyChats(manyUsers) {
   try {
-    let chats = await Chat.insertMany(manyUsers, {ordered: false});
+    let chats = await Chat.insertMany(manyUsers, { ordered: false });
     console.log(chats);
   } catch (error) {
     console.log(error);
@@ -52,23 +52,18 @@ async function createManyChats(manyUsers) {
 }
 
 async function delChat(chatID) {
-  
   try {
     let userDel = await Chat.findByIdAndDelete(chatID);
     console.log("Deleted user", userDel);
-    
-    
   } catch (error) {
     console.log(error);
-    
   }
 }
 
 
-
 module.exports = {
   createChat,
-  delChat
-
-}
+  delChat,
+  
+};
 // createManyChats(users);

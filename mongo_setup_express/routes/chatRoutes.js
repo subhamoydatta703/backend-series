@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Chat = require("../models/chat");
-const {createChat, delChat} = require("../seed")
+const {createChat, delChat, } = require("../seed")
 
 // Router helps us create separate route files.
 // It works like a small Express app where we write routes.
@@ -23,6 +23,7 @@ router.get("/chat", async (req, res) => {
 
 // go to the form for creating new chat
 router.get("/chat/new",(req, res)=>{
+  
     res.render("new.ejs")
 })
 
@@ -33,6 +34,31 @@ let {from, to, msg}= req.body;
  createChat(from, to, msg);
 res.redirect("/chat")
 
+})
+
+
+// get for edit form
+
+router.get("/chat/:_id/edit",async (req, res)=>{
+  let {_id} = req.params;
+  let chatDetail= await Chat.findById(_id)
+  // console.log(":Chat detail");
+  
+  console.log("Chat details: ",{chatDetail});
+  
+  res.render("edit.ejs",{chatDetail})
+})
+
+
+// update the edit to the db
+router.patch("/chat/:_id",async(req, res)=>{
+  let {_id}=req.params;
+  let {msg}=req.body
+  
+  await Chat.findByIdAndUpdate(_id,{msg})
+  res.redirect("/chat")
+  
+  
 })
 
 router.delete("/chat/:_id",(req, res)=>{

@@ -16,7 +16,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(chatRoutes)
 connectionDB();
 app.get("/", (req, res) => {
-  res.send("Main server working");
+  // res.send("Main server working");
+  console.log("Main server is working");
+res.redirect("/chat")
+  
 });
 
 
