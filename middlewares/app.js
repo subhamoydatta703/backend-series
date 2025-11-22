@@ -4,18 +4,16 @@ const path = require("path");
 
 app.use((req, res, next) => {
   console.log("middleware works");
-  console.log("after 1st middleware");
 
   next();
-});
-app.get("/", (req, res) => {
-  res.send("main rrot");
 });
 
 app.use((req, res, next) => {
   console.log("middleware 2 works");
   next();
-  console.log("after 2nd middleware");
+});
+app.get("/", (req, res) => {
+  res.send("main rrot");
 });
 
 app.get("/random", (req, res) => {
