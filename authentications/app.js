@@ -15,7 +15,7 @@ app.get("/", (req, res)=>{
 app.get("/getcookies",(req, res)=>{
     // reading the cookies that is send by the browser
 console.log(req.cookies);
-res.send(req.cookies.age)
+res.send(req.cookies.name)
 
 })
 
