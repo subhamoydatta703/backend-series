@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auth UI</title>
+    <link rel="stylesheet" href="/stylesheet/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Register Form -->
+      <form action="/create" method="POST">
+        <h2>Register</h2>
+        <input
+          type="username"
+          name="username"
+          placeholder="username"
+          required
+        />
+        <input type="email" name="email" placeholder="Email" required />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+        <button type="submit">Register</button>
+      </form>
+
+      <!-- Login Form -->
+      <form action="/login" method="get" class="login-form">
+        <button type="submit">Already have an account? Login</button>
+      </form>
+    </div>
+  </body>
+</html>
