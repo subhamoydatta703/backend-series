@@ -1,4 +1,4 @@
-## Mongoose DB – Backend Practice Project
+## Backend Practice - Series
 
 This repository focuses on practicing backend development using Node.js, MongoDB, MySQL, and Mongoose.  
 It highlights how to establish a database connection, define schemas, and work with MongoDB documents through essential CRUD operations, while also experimenting with MySQL-based database handling. The goal of this project is to provide a clear and beginner-friendly understanding of how backend applications interact with databases using different approaches.
