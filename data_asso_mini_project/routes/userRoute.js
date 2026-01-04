@@ -17,6 +17,21 @@ userRouter.get("/signup", (req, res) => {
 //     console.error(error);
 //   }
 // });
+async function beforeGetData(req, res, next) {
+  try {
+    let token = req.cookies.myToken;
+    if (!token) {
+      return res.redirect("/login");
+    }
+    jwt.verify(token, process.env.JWT_SECRET_KEY);
+
+    next();
+  } catch (error) {
+    console.log("Error while using middleware beforeGetData");
+    console.error(error);
+    return res.redirect("/login")
+  }
+}
 userRouter.post("/create", async (req, res) => {
   let { username, name, age, email, password } = req.body;
   try {
@@ -79,11 +94,19 @@ userRouter.post("/login/new", async (req, res) => {
       httpOnly: true,
       maxAge: 60 * 60 * 1000,
     });
-    res.render("logout.ejs")
+    res.redirect("/logout/check")
   } catch (error) {
     console.log(error);
     
   }
+});
+userRouter.get("/logout/check",beforeGetData,(req,res)=>{
+  res.render("logout.ejs")
+})
+
+userRouter.get("/logout", (req, res) => {
+  res.clearCookie("myToken");
+  res.redirect("/login");
 });
 
 module.exports = userRouter;
