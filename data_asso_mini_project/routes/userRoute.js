@@ -54,5 +54,36 @@ userRouter.post("/create", async (req, res) => {
     console.error(error);
   }
 });
+userRouter.get("/login", (req, res) => {
+  res.render("login.ejs");
+});
+userRouter.post("/login/new", async (req, res) => {
+  try {
+    let { email, password } = req.body;
+    let user = await User.findOne({ email });
+    if (!user) {
+      return res.redirect("/signup");
+    }
+    let isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.redirect("/login");
+    }
+    const payload = {
+      userId: user._id,
+      email: user.email,
+    };
+    const jwtToken = await jwt.sign(payload, process.env.JWT_SECRET_KEY, {
+      expiresIn: "1h",
+    });
+    res.cookie("myToken", jwtToken, {
+      httpOnly: true,
+      maxAge: 60 * 60 * 1000,
+    });
+    res.render("logout.ejs")
+  } catch (error) {
+    console.log(error);
+    
+  }
+});
 
 module.exports = userRouter;
