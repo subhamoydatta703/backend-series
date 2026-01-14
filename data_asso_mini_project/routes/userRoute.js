@@ -23,13 +23,13 @@ async function beforeGetData(req, res, next) {
     if (!token) {
       return res.redirect("/login");
     }
-    jwt.verify(token, process.env.JWT_SECRET_KEY);
-
+    let decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+    req.user = decoded;
     next();
   } catch (error) {
     console.log("Error while using middleware beforeGetData");
     console.error(error);
-    return res.redirect("/login")
+    return res.redirect("/login");
   }
 }
 userRouter.post("/create", async (req, res) => {
@@ -94,15 +94,15 @@ userRouter.post("/login/new", async (req, res) => {
       httpOnly: true,
       maxAge: 60 * 60 * 1000,
     });
-    res.redirect("/logout/check")
+    res.redirect("/profile");
   } catch (error) {
     console.log(error);
-    
   }
 });
-userRouter.get("/logout/check",beforeGetData,(req,res)=>{
-  res.render("logout.ejs")
-})
+userRouter.get("/profile", beforeGetData, async (req, res) => {
+  let theUser = await User.findOne(req.user.id);
+  res.render("logout.ejs", { theUser });
+});
 
 userRouter.get("/logout", (req, res) => {
   res.clearCookie("myToken");

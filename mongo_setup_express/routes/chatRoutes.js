@@ -13,6 +13,10 @@ router.get("/chat", async (req, res) => {
   console.log("Home route");
 
   try {
+
+
+
+    
     let datas = await Chat.find();
     res.render("show.ejs",{datas});
     console.log(datas);
