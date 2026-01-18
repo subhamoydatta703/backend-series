@@ -1,49 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
 
-  <body style="background-color: #000000">
-    <div
-      class="container vh-100 d-flex justify-content-center align-items-center"
-    >
-      <div
-        class="card shadow-lg p-4 bg-dark text-light"
-        style="width: 100%; max-width: 500px"
-      >
-        <div class="card-body text-center">
-          <h1 class="card-title text-success mb-3">Login Successful</h1>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
 
-          <h5 class="text-secondary mb-4 text-light">User Details</h5>
+<body style="background-color: #000000">
+  <div class="container vh-100 d-flex justify-content-center align-items-center">
+    <div class="card shadow-lg p-4 bg-dark text-light" style="width: 100%; max-width: 500px">
+      <div class="card-body text-center">
+        <h1 class="card-title text-success mb-3">Login Successful</h1>
 
-          <ul class="list-group list-group-flush text-start mb-4">
-            <li class="list-group-item bg-dark text-light border-secondary">
-              <strong>Name:</strong> <%= theUser.name %>
-            </li>
-            <li class="list-group-item bg-dark text-light border-secondary">
-              <strong>Username:</strong> <%= theUser.username %>
-            </li>
-            <li class="list-group-item bg-dark text-light border-secondary">
-              <strong>Email:</strong> <%= theUser.email %>
-            </li>
-            <li class="list-group-item bg-dark text-light border-secondary">
-              <strong>Age:</strong> <%= theUser.age %>
-            </li>
-          </ul>
+        <h5 class="text-secondary mb-4 text-light">User Details</h5>
 
-          <form action="/signup" method="get">
-            <button type="submit" class="btn btn-danger w-100">Logout</button>
-          </form>
-        </div>
+        <ul class="list-group list-group-flush text-start mb-4">
+          <li class="list-group-item bg-dark text-light border-secondary">
+            <strong>Name:</strong>
+            <%= theUser.name %>
+          </li>
+          <li class="list-group-item bg-dark text-light border-secondary">
+            <strong>Username:</strong>
+            <%= theUser.username %>
+          </li>
+          <li class="list-group-item bg-dark text-light border-secondary">
+            <strong>Email:</strong>
+            <%= theUser.email %>
+          </li>
+          <li class="list-group-item bg-dark text-light border-secondary">
+            <strong>Age:</strong>
+            <%= theUser.age %>
+          </li>
+        </ul>
+
+        <form action="/logout" method="get">
+          <button type="submit" class="btn btn-danger w-100">Logout</button>
+        </form>
       </div>
     </div>
-  </body>
+  </div>
+
+  <script>
+    // Check for auth cookie when page becomes visible (handles back button after logout)
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible") {
+        // Check if isLoggedIn cookie exists
+        if (!document.cookie.includes("isLoggedIn")) {
+          window.location.replace("/login");
+        }
+      }
+    });
+
+    // Also check on initial page load (for bfcache restoration)
+    window.addEventListener("pageshow", function (event) {
+      if (event.persisted) {
+        // Page was restored from bfcache
+        if (!document.cookie.includes("isLoggedIn")) {
+          window.location.replace("/login");
+        }
+      }
+    });
+  </script>
+</body>
+
 </html>

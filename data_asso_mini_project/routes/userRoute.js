@@ -19,12 +19,19 @@ userRouter.get("/signup", (req, res) => {
 // });
 async function beforeGetData(req, res, next) {
   try {
+    // Prevent caching to ensure back button doesn't show protected content after logout
+    res.set("Cache-Control", "no-store, no-cache, must-revalidate, private");
+    res.set("Pragma", "no-cache");
+    res.set("Expires", "0");
+
     let token = req.cookies.myToken;
     if (!token) {
       return res.redirect("/login");
     }
     let decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-    req.user = decoded;
+    const user = await User.findById(decoded.userId);
+    if (!user) return res.redirect("/login");
+    req.user = user;
     next();
   } catch (error) {
     console.log("Error while using middleware beforeGetData");
@@ -60,6 +67,13 @@ userRouter.post("/create", async (req, res) => {
     res.cookie("myToken", jwtToken, {
       httpOnly: true,
       maxAge: 60 * 60 * 1000,
+      path: "/",
+    });
+    // Non-httpOnly cookie for client-side auth check (back button fix)
+    res.cookie("isLoggedIn", "true", {
+      httpOnly: false,
+      maxAge: 60 * 60 * 1000,
+      path: "/",
     });
     res.status(201).send("User created in db");
   } catch (error) {
@@ -93,6 +107,13 @@ userRouter.post("/login/new", async (req, res) => {
     res.cookie("myToken", jwtToken, {
       httpOnly: true,
       maxAge: 60 * 60 * 1000,
+      path: "/",
+    });
+    // Non-httpOnly cookie for client-side auth check (back button fix)
+    res.cookie("isLoggedIn", "true", {
+      httpOnly: false,
+      maxAge: 60 * 60 * 1000,
+      path: "/",
     });
     res.redirect("/profile");
   } catch (error) {
@@ -100,12 +121,13 @@ userRouter.post("/login/new", async (req, res) => {
   }
 });
 userRouter.get("/profile", beforeGetData, async (req, res) => {
-  let theUser = await User.findOne(req.user.id);
-  res.render("logout.ejs", { theUser });
+
+  res.render("logout.ejs", { theUser: req.user });
 });
 
 userRouter.get("/logout", (req, res) => {
-  res.clearCookie("myToken");
+  res.clearCookie("myToken", { httpOnly: true, path: "/" });
+  res.clearCookie("isLoggedIn", { path: "/" });
   res.redirect("/login");
 });
 
